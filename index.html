@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Form + IndexedDB</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <form>
+
+    <div id="app" v-cloak>
+
+      <div v-if="ready">
+        <!-- Course Name -->
+        <div class="field">
+          <label class="label" for="course">Course</label>
+          <input v-model="course" class="input" type="text" placeholder="Course name">
+        </div>
+        <!-- To-Do Item -->
+        <div class="field">
+          <label class="label" for="task">To-Do</label>
+          <input v-model="task" class="input" type="text" placeholder="Task">
+        </div>
+        <!-- Priority -->
+        <div class="field">
+          <label class="label" for="priority">Priority</label>
+          <input v-model="priority" class="input" type="text" placeholder="Priority">
+        </div>
+        <!-- Due Date -->
+        <div class="field">
+          <label class="label" for="due-date">Due date</label>
+          <input v-model="duedate" class="input" type="text" placeholder="Due date">
+        </div>
+        <!-- Add Note Button -->
+        <button @click="addTodo" :disabled="addDisabled">Add To-Do Item</button>
+
+        <!-- Show To-do items -->
+        <p>
+          <ul>
+            <li v-for="todo in todos">
+              {{todo.course}}: {{todo.task}} ({{todo.priority}}) due on {{todo.duedate}}
+              <button @click="deleteTodo(todo.id)">Delete</button>
+            </li>
+          </ul>
+        </p>
+      </div>
+
+    </div>
+  </form>
+
+  <script src="form.js"></script>
+</body>
+</html>
